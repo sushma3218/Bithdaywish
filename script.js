@@ -355,6 +355,35 @@ function typeWriter() {
         el.innerHTML += letterText.charAt(i);
         i++;
         setTimeout(typeWriter, 50); // Adjust typing speed here
+    } else {
+        // Show the video button when typing finishes
+        document.getElementById('videoAction').classList.add('show');
+    }
+}
+
+function goToPage5() {
+    const page4 = document.getElementById('page4');
+    const page5 = document.getElementById('page5');
+
+    if (navigator.vibrate) navigator.vibrate(50);
+
+    // Slide page 4 out
+    page4.classList.remove('active');
+    page4.classList.add('slide-out-left');
+
+    // Show page 5
+    page5.style.visibility = 'visible';
+    page5.style.opacity = '1';
+    page5.classList.add('active', 'slide-in-right');
+
+    createBalloons('balloons-container-5', 12);
+    createConfetti('confetti-container-5', 40);
+    createSparkles('sparkle-overlay-5', 25);
+
+    // Attempt to autoplay
+    const video = document.getElementById('birthdayVideo');
+    if (video) {
+        video.play().catch(e => console.log('Autoplay prevented by browser', e));
     }
 }
 

@@ -97,7 +97,33 @@
                 <img src="images/letter_bg.png" alt="Letter Paper" class="letter-bg">
                 <div class="letter-text-container">
                     <p id="typewriterText" class="typewriter-content"></p>
+                    <div class="video-action" id="videoAction">
+                        <button class="btn btn-video" onclick="goToPage5()">
+                            <span class="btn-icon">🎬</span>
+                            <span class="btn-label">Watch This!</span>
+                        </button>
+                    </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PAGE 5: VIDEO PAGE ===== -->
+    <section id="page5" class="page">
+        <div id="balloons-container-5"></div>
+        <div id="confetti-container-5"></div>
+        <div class="sparkle-overlay" id="sparkle-overlay-5"></div>
+        
+        <div class="page5-content">
+            <h2 class="video-title">A Special Memory For You ✨</h2>
+            <div class="video-container">
+                <video id="birthdayVideo" class="birthday-video" controls playsinline>
+                    <source src="images/birthday_video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="back-link mt-4">
+                <button class="btn-back" onclick="goToPage1()">← Start Over</button>
             </div>
         </div>
     </section>
