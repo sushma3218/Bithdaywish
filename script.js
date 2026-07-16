@@ -3,16 +3,16 @@
    Balloons, Confetti, Sparkles, Poppers
    ======================================== */
 
-// ---- Balloon Emojis & Colors ----
-const BALLOON_EMOJIS = ['🎈', '🩷', '🎀', '💖', '💗', '🩵', '💜', '❤️'];
+// ---- Balloon Image Path ----
+const BALLOON_IMAGE = 'images/balloon.png';
 const CONFETTI_COLORS = [
     '#ff1493', '#ff69b4', '#ffb6c1', '#ff00ff',
     '#ffd700', '#ff6347', '#ff4500', '#da70d6',
     '#ba55d3', '#ff1493', '#ffffff', '#ffc0cb'
 ];
 
-// ---- Create Balloons ----
-function createBalloons(containerId, count = 12) {
+// ---- Create Balloons (Golden Image) ----
+function createBalloons(containerId, count = 10) {
     const container = document.getElementById(containerId);
     if (!container) return;
     container.innerHTML = '';
@@ -20,17 +20,24 @@ function createBalloons(containerId, count = 12) {
     for (let i = 0; i < count; i++) {
         const balloon = document.createElement('div');
         balloon.className = 'balloon';
-        balloon.textContent = BALLOON_EMOJIS[Math.floor(Math.random() * BALLOON_EMOJIS.length)];
 
-        const left = Math.random() * 90 + 5;
-        const duration = Math.random() * 5 + 6;
-        const delay = Math.random() * 8;
-        const size = Math.random() * 1.2 + 1.8;
+        const img = document.createElement('img');
+        img.src = BALLOON_IMAGE;
+        img.alt = '';
+        balloon.appendChild(img);
+
+        const left = Math.random() * 80 + 5;
+        const duration = Math.random() * 6 + 8;
+        const delay = Math.random() * 12;
+        const size = Math.random() * 60 + 70; // 70px to 130px
+        const baseOpacity = Math.random() * 0.3 + 0.6; // 0.6 to 0.9
 
         balloon.style.left = `${left}%`;
-        balloon.style.fontSize = `${size}rem`;
+        balloon.style.width = `${size}px`;
+        balloon.style.height = `${size * 1.2}px`;
         balloon.style.setProperty('--duration', `${duration}s`);
         balloon.style.setProperty('--delay', `${delay}s`);
+        balloon.style.setProperty('--max-opacity', `${baseOpacity}`);
 
         container.appendChild(balloon);
     }
@@ -193,7 +200,7 @@ function goToPage2() {
         page2.classList.add('active', 'slide-in-right');
 
         // Initialize page 2 animations
-        createBalloons('balloons-container-2', 10);
+        createBalloons('balloons-container-2', 6);
         createConfetti('confetti-container-2', 30);
         createSparkles('sparkle-overlay-2', 20);
 
@@ -326,7 +333,7 @@ function setupJourneyButtons() {
 // ---- Initialize Everything ----
 document.addEventListener('DOMContentLoaded', () => {
     // Page 1 animations
-    createBalloons('balloons-container', 14);
+    createBalloons('balloons-container', 8);
     createConfetti('confetti-container', 45);
     createSparkles('sparkle-overlay', 30);
     triggerPoppers();
