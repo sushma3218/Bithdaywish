@@ -408,17 +408,28 @@ function setupJourneyButtons() {
     }
 
     if (btnNo) {
-        const moveBtn = () => {
+        const moveBtn = (e) => {
+            if (e && e.preventDefault) e.preventDefault();
             if (navigator.vibrate) navigator.vibrate(50);
-            const x = Math.random() * (window.innerWidth - btnNo.clientWidth - 40) - (window.innerWidth / 2 - btnNo.clientWidth / 2);
-            const y = Math.random() * (window.innerHeight - btnNo.clientHeight - 40) - (window.innerHeight / 2 - btnNo.clientHeight / 2);
             
-            btnNo.style.transform = `translate(${x}px, ${y}px)`;
-            btnNo.style.transition = 'transform 0.3s ease';
+            // Calculate a random position avoiding the edges
+            const padding = 20;
+            const maxX = window.innerWidth - btnNo.clientWidth - padding;
+            const maxY = window.innerHeight - btnNo.clientHeight - padding;
+            
+            const randomX = Math.max(padding, Math.random() * maxX);
+            const randomY = Math.max(padding, Math.random() * maxY);
+            
+            // Reset position to fixed so it can roam anywhere
+            btnNo.style.position = 'fixed';
+            btnNo.style.left = randomX + 'px';
+            btnNo.style.top = randomY + 'px';
+            btnNo.style.transform = 'none'; // remove translate
+            btnNo.style.transition = 'left 0.3s ease, top 0.3s ease';
         };
 
         btnNo.addEventListener('mouseover', moveBtn);
-        btnNo.addEventListener('touchstart', moveBtn);
+        btnNo.addEventListener('touchstart', moveBtn, {passive: false});
         btnNo.addEventListener('click', moveBtn);
     }
 }
