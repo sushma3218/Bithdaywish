@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>🎂 Happy Birthday! 🎉</title>
+    <meta name="description" content="A special birthday wish just for you! Open to see your surprise.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- ===== PAGE 1: HERO / LANDING ===== -->
+    <section id="page1" class="page active">
+        <!-- Floating balloons container -->
+        <div id="balloons-container"></div>
+        
+        <!-- Confetti / Popper particles -->
+        <div id="confetti-container"></div>
+        
+        <!-- Sparkle overlay -->
+        <div class="sparkle-overlay" id="sparkle-overlay"></div>
+
+        <div class="page1-content">
+            <h1 class="hero-title">
+                <span class="title-line1">🎉 It's Your</span>
+                <span class="title-line2">Special Day!</span>
+                <span class="title-line3">🎂</span>
+            </h1>
+
+            <div class="hero-image-wrapper">
+                <div class="image-glow"></div>
+                <div class="image-ring ring1"></div>
+                <div class="image-ring ring2"></div>
+                <div class="image-ring ring3"></div>
+                <img src="images/hero.jpg" alt="Birthday Star" class="hero-image" id="heroImage">
+            </div>
+
+            <p class="hero-subtitle">A little surprise awaits you ✨</p>
+
+            <button class="btn btn-start" id="btnStart" onclick="goToPage2()">
+                <span class="btn-sparkle"></span>
+                <span class="btn-text">🎁 Start</span>
+                <span class="btn-sparkle"></span>
+            </button>
+        </div>
+
+        <!-- Popper burst elements -->
+        <div class="popper popper-left" id="popperLeft">🎊</div>
+        <div class="popper popper-right" id="popperRight">🎊</div>
+    </section>
+
+    <!-- ===== PAGE 2: JOURNEY BUTTONS ===== -->
+    <section id="page2" class="page">
+        <div id="balloons-container-2"></div>
+        <div id="confetti-container-2"></div>
+        <div class="sparkle-overlay" id="sparkle-overlay-2"></div>
+
+        <div class="page2-content">
+            <h2 class="page2-title">
+                <span class="wave-text" id="waveText"></span>
+            </h2>
+            <p class="page2-subtitle">Wanna see the funny journey of yours? 😄</p>
+
+            <div class="journey-buttons">
+                <button class="btn btn-journey btn-yes" id="btnYes">
+                    <span class="btn-icon">🤩</span>
+                    <span class="btn-label">Oh Yesss!</span>
+                    <span class="btn-sub">Show me everything</span>
+                </button>
+
+                <button class="btn btn-journey btn-surprise" id="btnSurprise">
+                    <span class="btn-icon">🎁</span>
+                    <span class="btn-label">Surprise Me!</span>
+                    <span class="btn-sub">I love surprises</span>
+                </button>
+            </div>
+
+            <div class="back-link">
+                <button class="btn-back" onclick="goToPage1()">← Go Back</button>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
