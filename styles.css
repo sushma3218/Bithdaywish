@@ -866,53 +866,52 @@ body {
     z-index: 5;
 }
 
-.letter-paper {
-    background: #fdfbf7;
-    color: #333;
-    padding: 2.5rem;
-    border-radius: 10px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.3), inset 0 0 20px rgba(0,0,0,0.05);
-    max-width: 500px;
-    width: 100%;
-    font-family: 'Dancing Script', cursive;
-    text-align: center;
+.vintage-letter {
     position: relative;
+    width: 90%;
+    max-width: 450px;
+    height: 85vh;
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px);
     transition: all 1s var(--transition-smooth);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.letter-paper::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: repeating-linear-gradient(transparent, transparent 29px, #e0d9cc 30px);
-    pointer-events: none;
-    border-radius: 10px;
-    opacity: 0.5;
-}
-
-.page.active .letter-paper {
+.page.active .vintage-letter {
     opacity: 1;
     transform: translateY(0);
     transition-delay: 0.5s;
 }
 
-.letter-paper h2 {
-    font-size: 3rem;
-    color: #c9302c;
-    margin-bottom: 1rem;
-    position: relative;
-    z-index: 2;
+.letter-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 15px 35px rgba(0,0,0,0.4));
+    z-index: 1;
 }
 
-.letter-paper p {
-    font-size: 1.5rem;
-    line-height: 1.6;
+.letter-text-container {
     position: relative;
     z-index: 2;
+    width: 75%;
+    height: 70%;
+    margin-top: 5%; /* push down past the wax seal */
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.typewriter-content {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.4rem;
+    line-height: 1.7;
+    color: #4a3b32;
+    text-align: left;
+    white-space: pre-wrap; /* Keeps formatting */
 }
 

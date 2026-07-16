@@ -342,6 +342,20 @@ function goToPage4() {
     createBalloons('balloons-container-4', 12);
     createConfetti('confetti-container-4', 40);
     createSparkles('sparkle-overlay-4', 25);
+
+    // Typewriter effect
+    setTimeout(typeWriter, 800);
+}
+
+const letterText = "heyyy pavi happy birthday. na un oda classmate ah 10th,11th,12th la eruthen, ana unta close anathu enamo 11th la than. unta pesatha mothu en oda taught epadina silent ana paiyan pola drawing nalla pandraneyy apudi and then namba nallaaa pesan start panathey ne SG pona aprm than. You are a really good unique frnd i have in my life, for both ups and downs. Waiting here to see u again mrbc";
+let i = 0;
+function typeWriter() {
+    const el = document.getElementById('typewriterText');
+    if (i < letterText.length) {
+        el.innerHTML += letterText.charAt(i);
+        i++;
+        setTimeout(typeWriter, 50); // Adjust typing speed here
+    }
 }
 
 // ---- Journey Button Click Handlers ----
