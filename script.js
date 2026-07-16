@@ -295,10 +295,59 @@ function createTouchSparkle(x, y) {
     }
 }
 
+// ---- Page 3 & 4 Navigation ----
+function goToPage3() {
+    const page2 = document.getElementById('page2');
+    const page3 = document.getElementById('page3');
+    const envelopeContainer = document.getElementById('envelopeContainer');
+
+    if (navigator.vibrate) navigator.vibrate(50);
+
+    // Slide page 2 out
+    page2.classList.remove('active');
+    page2.classList.add('slide-out-left');
+
+    // Show page 3
+    page3.style.visibility = 'visible';
+    page3.style.opacity = '1';
+    page3.classList.add('active', 'slide-in-right');
+
+    // Envelope fly in animation
+    setTimeout(() => {
+        envelopeContainer.classList.add('fly-in');
+        
+        // After fly in, open envelope
+        setTimeout(() => {
+            envelopeContainer.classList.add('open');
+            
+            // Go to page 4
+            setTimeout(goToPage4, 1500);
+        }, 1500);
+    }, 500);
+}
+
+function goToPage4() {
+    const page3 = document.getElementById('page3');
+    const page4 = document.getElementById('page4');
+
+    // Slide page 3 out
+    page3.classList.remove('active');
+    page3.classList.add('slide-out-left');
+
+    // Show page 4
+    page4.style.visibility = 'visible';
+    page4.style.opacity = '1';
+    page4.classList.add('active', 'slide-in-right');
+
+    createBalloons('balloons-container-4', 12);
+    createConfetti('confetti-container-4', 40);
+    createSparkles('sparkle-overlay-4', 25);
+}
+
 // ---- Journey Button Click Handlers ----
 function setupJourneyButtons() {
     const btnYes = document.getElementById('btnYes');
-    const btnSurprise = document.getElementById('btnSurprise');
+    const btnNo = document.getElementById('btnNo');
 
     if (btnYes) {
         btnYes.addEventListener('click', () => {
@@ -306,27 +355,28 @@ function setupJourneyButtons() {
             const rect = btnYes.getBoundingClientRect();
             burstConfetti(rect.left + rect.width / 2, rect.top + rect.height / 2, 40);
             
-            // Pulse animation
+            // Pulse animation then go to page 3
             btnYes.animate([
                 { transform: 'scale(1)', boxShadow: '0 4px 30px rgba(255,20,147,0.15)' },
                 { transform: 'scale(1.05)', boxShadow: '0 8px 50px rgba(255,20,147,0.4)' },
                 { transform: 'scale(1)', boxShadow: '0 4px 30px rgba(255,20,147,0.15)' }
-            ], { duration: 500 });
+            ], { duration: 500 }).onfinish = goToPage3;
         });
     }
 
-    if (btnSurprise) {
-        btnSurprise.addEventListener('click', () => {
-            if (navigator.vibrate) navigator.vibrate([50, 50, 100]);
-            const rect = btnSurprise.getBoundingClientRect();
-            burstConfetti(rect.left + rect.width / 2, rect.top + rect.height / 2, 50);
+    if (btnNo) {
+        const moveBtn = () => {
+            if (navigator.vibrate) navigator.vibrate(50);
+            const x = Math.random() * (window.innerWidth - btnNo.clientWidth - 40) - (window.innerWidth / 2 - btnNo.clientWidth / 2);
+            const y = Math.random() * (window.innerHeight - btnNo.clientHeight - 40) - (window.innerHeight / 2 - btnNo.clientHeight / 2);
+            
+            btnNo.style.transform = `translate(${x}px, ${y}px)`;
+            btnNo.style.transition = 'transform 0.3s ease';
+        };
 
-            btnSurprise.animate([
-                { transform: 'scale(1)', boxShadow: '0 4px 30px rgba(255,215,0,0.1)' },
-                { transform: 'scale(1.05)', boxShadow: '0 8px 50px rgba(255,215,0,0.4)' },
-                { transform: 'scale(1)', boxShadow: '0 4px 30px rgba(255,215,0,0.1)' }
-            ], { duration: 500 });
-        });
+        btnNo.addEventListener('mouseover', moveBtn);
+        btnNo.addEventListener('touchstart', moveBtn);
+        btnNo.addEventListener('click', moveBtn);
     }
 }
 
